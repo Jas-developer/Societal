@@ -11,6 +11,9 @@ import router from "./routes/authRoutes.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { fileURLToPath } from "url";
 import { register } from "../server/controllers/auth.js";
+import { postRoutes } from "./routes/postRoutes.js";
+import { verifyToken } from "./middleware/auth.js";
+import { createPost } from "./controllers/posts.js";
 
 /*CONFIGURATIONS*/
 const __filename = fileURLToPath(import.meta.url);
@@ -38,11 +41,17 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-/* ROUTES WITH FILES*/
+/* ROUTES WITH FILES
+ *desc THESE ROUTES WILL UPLOAD FILES
+ */
 app.post("/auth/register", upload.single("picture"), register);
+app.post("/posts", verifyToken, upload.single("picture"), createPost);
+
 /*ROUTES */
 app.use("/auth", router);
 app.use("/users", userRouter);
+/*POST ROUTES*/
+app.use("/posts", postRoutes);
 /*MONGOOSE SET UP*/
 const PORT = process.env.PORT || 6001;
 const dbConnect = async () => {
