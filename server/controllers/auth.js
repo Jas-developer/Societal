@@ -20,13 +20,14 @@ const register = async (req, res) => {
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
+    const checkFriends = friends !== "" ? friends : [];
     const newUser = await User.create({
       firstName,
       lastName,
       email,
       password: passwordHash,
       picturePath,
-      friends,
+      friends: checkFriends,
       location,
       occupation,
       viewedProfile: Math.floor(Math.random() * 1000),
