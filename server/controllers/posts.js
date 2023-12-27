@@ -80,11 +80,3 @@ const likePost = async (req, res) => {
 };
 export { createPost, getFeedPosts, getUserPosts, likePost };
 
-// /*READ*/
-// router.get("/", verifyToken, getFeedPosts);
-// router.get("/:userId/posts", verifyToken, getUserPosts);
-
-// /*UPDATE*/
-// router.patch("/:id/like", verifyToken, likePost);
-
-// export { postRoutes };
