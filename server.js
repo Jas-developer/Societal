@@ -10,7 +10,7 @@ import path from "path";
 import router from "./routes/authRoutes.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { fileURLToPath } from "url";
-import { register } from "../server/controllers/auth.js";
+import { register } from "./controllers/auth.js";
 import { postRoutes } from "./routes/postRoutes.js";
 import { verifyToken } from "./middleware/auth.js";
 import { createPost } from "./controllers/posts.js";
