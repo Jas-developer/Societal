@@ -55,6 +55,9 @@ app.use("/users", userRouter);
 /*POST ROUTES*/
 app.use("/posts", postRoutes);
 /*MONGOOSE SET UP*/
+/*ADD THE DATA ONE TIME*/
+// User.insertMany(users);
+// Post.insertMany(posts);
 const PORT = process.env.PORT || 6001;
 const dbConnect = async () => {
   await mongoose
@@ -64,9 +67,6 @@ const dbConnect = async () => {
     })
     .then(() => {
       app.listen(PORT, () => console.log(`Server Port:${PORT}`));
-      /*ADD THE DATA ONE TIME*/
-      // User.insertMany(users);
-      // Post.insertMany(posts);
     })
     .catch((error) => console.log(error));
 };
